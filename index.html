@@ -80,12 +80,12 @@
 
             // collada
             var loader = new THREE.ColladaLoader(loadingManager);
-            loader.load('https://www.orquideamapping.com.ar/three/3dModels/star.dae', function (collada) {
+            loader.load('https://pablolucianop.github.io/goldenRatioConstellation/star.dae', function (collada) {
                 star = collada.scene;
                 scene.add(star);
             })
             function createStars() {
-                loader.load('https://www.orquideamapping.com.ar/three/3dModels/star.dae', function (collada) {
+                loader.load('https://pablolucianop.github.io/goldenRatioConstellation/star.dae', function (collada) {
                     star = collada.scene;
                     scene.add(star);
                     star.position.x = twistXy(radious, angle)[0]
@@ -102,7 +102,7 @@
             for (i = 0; i < 497; i++) {
                 createStars()
             }
-            loader.load('https://www.orquideamapping.com.ar/three/3dModels/ml3.dae', function (collada) {
+            loader.load('https://pablolucianop.github.io/goldenRatioConstellation/ml3.dae', function (collada) {
                 handTable = collada.scene;
                 scene.add(handTable);
                 handTable.rotation.y = 4
