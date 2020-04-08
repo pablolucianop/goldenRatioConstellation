@@ -1,5 +1,5 @@
 ﻿# goldenRatioConstellation
-![GitHub Logo](/src/watercolor.jpg)
+![Watercolour draft](/src/jpg/watercolor.jpg)
 Format: ![watercolor original](url)
 ##https://pablolucianop.github.io/goldenRatioConstellation/
 Elements arranged by golden ratio spiral
