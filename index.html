@@ -1,169 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Golden Ratio Constellation</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
     <style>
-        body {
-            background: #777;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-        }
+      body {
+        background: #777;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
 
-        #info {
-            position: absolute;
-            top: 0px;
-            width: 100%;
-            color: #ffffff;
-            padding: 5px;
-            font-family: Monospace;
-            font-size: 13px;
-            text-align: center;
-        }
+      #info {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        color: #ffffff;
+        padding: 5px;
+        font-family: Monospace;
+        font-size: 13px;
+        text-align: center;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="container"></div>
     <div id="info">
-        <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> collada loader
-        | Element arranged by golden ratio spiral by <a href="https://pablopanzatrabajos.com.ar" target="_blank" rel="noopener">Pablo
-            Panza</a> is licensed
-        under
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC Attribution</a>
+      <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a>
+      collada loader | Element arranged by golden ratio spiral by
+      <a href="https://pablopanzatrabajos.com.ar" target="_blank" rel="noopener"
+        >Pablo Panza</a
+      >
+      is licensed under
+      <a
+        href="https://creativecommons.org/licenses/by/4.0/"
+        target="_blank"
+        rel="noopener"
+        >CC Attribution</a
+      >
     </div>
     <script src="build/three.js"></script>
     <script src="src/js/loaders/ColladaLoader.js"></script>
     <script src="src/js/WebGL.js"></script>
     <script src="src/js/controls/OrbitControls.js"></script>
     <script src="src/js/libs/stats.min.js"></script>
-    <script>
-        if (WEBGL.isWebGLAvailable() === false) {
-            document.body.appendChild(WEBGL.getWebGLErrorMessage());
-        }
-
-        var container, stats, clock;
-        var camera, scene, renderer, star, positionX, positionY, angle, radious;
-        positionX = 0
-        positionY = 0
-        positionZ = 2
-        angle = 4
-        radious = 1.9
-
-        init();
-        animate();
-
-        function twistXy(hypo, angle) {
-            // var opo = (Math.sin(angle * (Math.PI / 180))) * hypo
-            // var adja = (Math.cos(angle * (Math.PI / 180))) * hypo
-            var opo = (Math.sin(angle)) * hypo
-            var adja = (Math.cos(angle)) * hypo
-            var xY = [opo, adja]
-            return xY
-        }
-
-        function init() {
-            container = document.getElementById('container');
-            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
-            camera.position.set(0.4230411162467691, 0.6643687214518752, -3.9961529578031163);
-            camera.lookAt(0, 3, 0);
-            var controls = new THREE.OrbitControls(camera);
-            scene = new THREE.Scene();
-            clock = new THREE.Clock();
-
-            //adding stars
-            // loading manager
-            var loadingManager = new THREE.LoadingManager();
-
-            // collada
-            var loader = new THREE.ColladaLoader(loadingManager);
-            loader.load('src/collada/star.dae', function (collada) {
-                star = collada.scene;
-                scene.add(star);
-            })
-            function createStars() {
-                loader.load('src/collada/star.dae', function (collada) {
-                    star = collada.scene;
-                    scene.add(star);
-                    star.position.x = twistXy(radious, angle)[0]
-                    star.position.y = twistXy(radious, angle)[1]
-                    star.angle = angle
-                    star.radious = radious
-                    angle = angle + 1.61803398875
-                    radious = radious + 0.02
-                    star.position.z = positionZ
-                    positionZ = Math.cos(radious / 2) * 3
-                });
-            }
-
-            for (i = 0; i < 497; i++) {
-                createStars()
-            }
-            loader.load('src/collada/ml3.dae', function (collada) {
-                handTable = collada.scene;
-                scene.add(handTable);
-                handTable.rotation.y = 4
-                handTable.position.z = 1
-                handTable.position.y = -1.1
-
-            });
-
-            var ambientLight = new THREE.AmbientLight(0xcccccc, 0.7);
-            scene.add(ambientLight);
-
-            var directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight.position.set(1, 1, 0).normalize();
-            scene.add(directionalLight);
-
-            renderer = new THREE.WebGLRenderer();
-            renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setClearColor(0xF2EBC2, 1);
-            container.appendChild(renderer.domElement);
-
-            stats = new Stats();
-            container.appendChild(stats.dom);
-
-            window.addEventListener('resize', onWindowResize, false);
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            render();
-            stats.update();
-        }
-
-        function render() {
-            var delta = clock.getDelta();
-            if (star !== undefined) {
-            }
-            if (angle < 1000) {
-                camera.position.z = camera.position.z - 0.01
-            } else if (angle > 1000 && angle < 1500) {
-                camera.position.z = camera.position.z - 0.1
-            }
-
-            setInterval(function () { angle = angle + 0.1 }, 300);
-
-            for (let index = 2; index < 500; index++) {
-                radious = radious - 0.0001
-                if (scene.children[index] !== undefined) {
-                    scene.children[index].position.x = twistXy((scene.children[index].radious + radious / 333333), (scene.children[index].angle + radious) / 5)[0]
-                    scene.children[index].position.y = twistXy((scene.children[index].radious + radious / 3333), (scene.children[index].angle + radious) / 5)[1]
-                }
-            }
-            renderer.render(scene, camera);
-        }
-    </script>
-</body>
-
+    <script src="src/js/stars.js"></script>
+  </body>
 </html>
