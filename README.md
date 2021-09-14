@@ -1,8 +1,8 @@
 ﻿# goldenRatioConstellation
 ![Watercolour draft](/src/jpg/watercolor.jpg)
-## https://pablolucianop.github.io/goldenRatioConstellation/
+## <a href="https://pablolucianop.github.io/goldenRatioConstellation/" target="_blank" rel="noopener noreferrer">DEMO Golden Ratio Constellation</a>
 
-*Elements arranged by golden ratio spiral
+Elements arranged by golden ratio spiral
 
 
 ## Built With
@@ -13,7 +13,8 @@
 
 ## Author
 
-* **Pablo Panza** - *Initial work* - [pablolucianop](https://github.com/pablolucianop), https://pablopanzatrabajos.com.ar/
+* **Pablo Panza** - 
+<!--  [pablolucianop](https://github.com/pablolucianop), https://pablopanzatrabajos.com.ar/ -->
 
 
 ## License
@@ -22,4 +23,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Numberphile, The Golden Ratio (why it is so irrational) -  https://www.youtube.com/watch?v=sj8Sg8qnjOg
+*<a href="https://www.youtube.com/watch?v=sj8Sg8qnjOg" target="_blank" rel="noopener noreferrer">Numberphile, The Golden Ratio (why it is so irrational)</a>
+  
